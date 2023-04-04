@@ -1,10 +1,10 @@
 export interface ITone {
-    impliedTone?: 'pos'|'neg'|'neu';
-    possibleTones?: Set<('pos'|'neg'|'neu')>;
+    tone: ('pos'|'neg'|'neu');
     intensity?: 'ex'|'hi'|'lo';
 }
 export interface IWord {
-    tone: ITone;
+    // In order of likelihood
+    possibleTones?: ITone[];
 }
 export interface IWordSet {
     [word: string]: IWord;
@@ -44,8 +44,9 @@ const defaultDictionary: IEnglishDictionary =
 
         
 export interface IWordRelationship {
-    similar: string[];
-    opposite: string[];
+    similar?: string[];
+    opposite?: string[];
+    related: string[];
 }
 export interface IEnglishThesaurus {
     [word: string]: IWordRelationship;
